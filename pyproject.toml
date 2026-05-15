@@ -1,0 +1,24 @@
+[project]
+name = "jira-worklog-filler"
+version = "0.1.0"
+description = "LLMs automation tools to log time in jira"
+authors = [
+    {name = "Arthur Vinot",email = "arthur.vinot@xxii.fr"}
+]
+requires-python = ">=3.11"
+dependencies = [
+    "jira (>=3.10.5,<4.0.0)",
+    "typer (>=0.25.1,<0.26.0)",
+    "python-dotenv (>=1.2.2,<2.0.0)"
+]
+
+[tool.poetry]
+package-mode = true
+packages = [{include = "fill_worklogs.py"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+fill-worklogs = "fill_worklogs:app"
