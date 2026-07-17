@@ -77,6 +77,11 @@ def main(
 
     worklogs_to_apply: list[WorklogToApply] = []
 
+    ignored_titles = {
+        "Maintien opérationnel & Support interne",
+        "Atelier technique & Préparation du sprint",
+    }
+
     # Fix seed for deterministic random choice
     random.seed(22)
 
@@ -86,6 +91,11 @@ def main(
         in_progress_issues = jira_client.search_issues(
             f'status WAS "In Progress" ON "{day.date}" AND assignee WAS currentUser() ON "{day.date}" AND type IN (Task, Story, "New Feature", Bug, Sub-task)'
         )
+
+        in_progress_issues = [
+            issue for issue in in_progress_issues
+            if not any(title in issue.fields.summary for title in ignored_titles)
+        ]
 
         if in_progress_issues:
             # NOTE: customfield_10117 == Story points
