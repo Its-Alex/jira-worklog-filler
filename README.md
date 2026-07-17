@@ -33,7 +33,12 @@ activity and story points.
 Follow these steps to set up the script for the first time:
 
 1. **Install Poetry**: If you haven't already, install
-   [Poetry](https://python-poetry.org/docs/#installation).
+   [Poetry](https://python-poetry.org/docs/#installation). This can be done using
+   [mise](https://mise.jdx.dev/):
+
+    ```bash
+    mise install
+     ```
 2. **Install Dependencies**:
 
     ```bash
